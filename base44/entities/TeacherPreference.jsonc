@@ -1,0 +1,98 @@
+{
+  "name": "TeacherPreference",
+  "type": "object",
+  "properties": {
+    "teacher_email": {
+      "type": "string"
+    },
+    "theme": {
+      "type": "string",
+      "enum": [
+        "light",
+        "dark",
+        "system"
+      ],
+      "enumColors": [
+        "yellow",
+        "blue",
+        "gray"
+      ],
+      "default": "light"
+    },
+    "font_size": {
+      "type": "string",
+      "enum": [
+        "small",
+        "medium",
+        "large",
+        "xlarge"
+      ],
+      "enumColors": [
+        "gray",
+        "green",
+        "blue",
+        "purple"
+      ],
+      "default": "medium"
+    },
+    "high_contrast": {
+      "type": "boolean",
+      "default": false
+    },
+    "dyslexic_font": {
+      "type": "boolean",
+      "default": false
+    },
+    "language": {
+      "type": "string",
+      "default": "en"
+    },
+    "timezone": {
+      "type": "string",
+      "default": "Asia/Manila"
+    },
+    "date_format": {
+      "type": "string",
+      "enum": [
+        "MM/DD/YYYY",
+        "DD/MM/YYYY",
+        "YYYY/MM/DD"
+      ],
+      "enumColors": [
+        "gray",
+        "green",
+        "blue"
+      ],
+      "default": "MM/DD/YYYY"
+    },
+    "time_format": {
+      "type": "string",
+      "enum": [
+        "12",
+        "24"
+      ],
+      "enumColors": [
+        "blue",
+        "gray"
+      ],
+      "default": "12"
+    }
+  },
+  "required": [
+    "teacher_email"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

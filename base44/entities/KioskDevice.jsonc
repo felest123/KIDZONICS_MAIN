@@ -1,0 +1,61 @@
+{
+  "name": "KioskDevice",
+  "type": "object",
+  "description": "Camera and microphone results reported by kiosks during real lessons.",
+  "properties": {
+    "device_name": {
+      "type": "string"
+    },
+    "camera_status": {
+      "type": "string",
+      "enum": [
+        "ok",
+        "blocked",
+        "unavailable",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "microphone_status": {
+      "type": "string",
+      "enum": [
+        "ok",
+        "blocked",
+        "unavailable",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "camera_checked_at": {
+      "type": "string"
+    },
+    "microphone_checked_at": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "device_name"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "nobody"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "nobody"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "nobody"
+      }
+    }
+  }
+}

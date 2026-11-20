@@ -1,0 +1,46 @@
+{
+  "name": "Assessment",
+  "type": "object",
+  "properties": {
+    "student_id": {
+      "type": "string"
+    },
+    "student_name": {
+      "type": "string"
+    },
+    "module": {
+      "type": "string",
+      "enum": [
+        "vowels",
+        "cvc"
+      ]
+    },
+    "lesson_key": {
+      "type": "string"
+    },
+    "target": {
+      "type": "string"
+    },
+    "trial": {
+      "type": "number"
+    },
+    "accuracy": {
+      "type": "number"
+    },
+    "transcript": {
+      "type": "string"
+    },
+    "feedback": {
+      "type": "string"
+    },
+    "passed": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "student_id",
+    "module",
+    "lesson_key",
+    "accuracy"
+  ]
+}

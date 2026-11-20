@@ -1,0 +1,163 @@
+{
+  "name": "LessonPlan",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "vowels",
+        "cvc"
+      ],
+      "enumColors": [
+        "yellow",
+        "blue"
+      ]
+    },
+    "target": {
+      "type": "string",
+      "description": "Target letter or CVC word"
+    },
+    "instructions": {
+      "type": "string",
+      "description": "Learning instructions for the student"
+    },
+    "pronunciation_target": {
+      "type": "string"
+    },
+    "assessment_instructions": {
+      "type": "string"
+    },
+    "demo_audio_uri": {
+      "type": "string"
+    },
+    "demo_video_uri": {
+      "type": "string"
+    },
+    "illustration_uri": {
+      "type": "string"
+    },
+    "audience": {
+      "type": "string",
+      "enum": [
+        "all",
+        "student"
+      ],
+      "enumColors": [
+        "green",
+        "purple"
+      ],
+      "default": "all",
+      "description": "All applicable students, or one specific student"
+    },
+    "student_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Students who receive this lesson exclusively"
+    },
+    "student_names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "teacher_email": {
+      "type": "string"
+    },
+    "teacher_name": {
+      "type": "string"
+    },
+    "ai_prepared": {
+      "type": "boolean",
+      "default": false,
+      "description": "Lesson details prepared for the KidZonics AI agent"
+    },
+    "ai_status": {
+      "type": "string",
+      "enum": [
+        "not_prepared",
+        "prepared",
+        "connected"
+      ],
+      "enumColors": [
+        "gray",
+        "yellow",
+        "green"
+      ],
+      "default": "not_prepared"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "published",
+        "archived"
+      ],
+      "enumColors": [
+        "gray",
+        "green",
+        "yellow"
+      ],
+      "default": "draft",
+      "description": "Only published lessons can be assigned by teachers"
+    },
+    "library": {
+      "type": "boolean",
+      "default": false,
+      "description": "Part of the central lesson library managed by administrators"
+    },
+    "published_at": {
+      "type": "string"
+    },
+    "archived_at": {
+      "type": "string"
+    },
+    "updated_by": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "category",
+    "target"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.status": "published"
+        },
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "nobody"
+      }
+    }
+  }
+}

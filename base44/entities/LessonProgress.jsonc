@@ -1,0 +1,51 @@
+{
+  "name": "LessonProgress",
+  "type": "object",
+  "properties": {
+    "student_id": {
+      "type": "string"
+    },
+    "student_name": {
+      "type": "string"
+    },
+    "module": {
+      "type": "string",
+      "enum": [
+        "vowels",
+        "cvc"
+      ]
+    },
+    "lesson_key": {
+      "type": "string",
+      "description": "Lesson identifier, e.g. A or CAT"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "locked",
+        "current",
+        "completed"
+      ],
+      "default": "current"
+    },
+    "attempts": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of completed practice sessions for this lesson"
+    },
+    "best_accuracy": {
+      "type": "number",
+      "default": 0
+    },
+    "stars": {
+      "type": "number",
+      "default": 0,
+      "description": "Best stars earned: 3 = passed on trial 1, 2 = trial 2, 1 = trial 3, 0 = not passed"
+    }
+  },
+  "required": [
+    "student_id",
+    "module",
+    "lesson_key"
+  ]
+}

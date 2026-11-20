@@ -1,0 +1,56 @@
+{
+  "name": "AdminActivityLog",
+  "type": "object",
+  "description": "Append-only log of administrator actions. Nobody can edit or delete entries.",
+  "properties": {
+    "admin_email": {
+      "type": "string"
+    },
+    "admin_name": {
+      "type": "string"
+    },
+    "action": {
+      "type": "string",
+      "description": "e.g. teacher.deactivated, rfid.replaced, lesson.published"
+    },
+    "target_type": {
+      "type": "string"
+    },
+    "target_id": {
+      "type": "string"
+    },
+    "target_label": {
+      "type": "string"
+    },
+    "details": {
+      "type": "string",
+      "description": "JSON with the relevant before/after values"
+    }
+  },
+  "required": [
+    "admin_email",
+    "action"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "nobody"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "nobody"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "nobody"
+      }
+    }
+  }
+}

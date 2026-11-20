@@ -1,0 +1,76 @@
+{
+  "name": "LessonAssignment",
+  "type": "object",
+  "description": "A teacher assigning a published library lesson to their class or to one student.",
+  "properties": {
+    "lesson_id": {
+      "type": "string"
+    },
+    "lesson_title": {
+      "type": "string"
+    },
+    "teacher_email": {
+      "type": "string"
+    },
+    "teacher_name": {
+      "type": "string"
+    },
+    "audience": {
+      "type": "string",
+      "enum": [
+        "all",
+        "student"
+      ],
+      "default": "all"
+    },
+    "student_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "student_names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "lesson_id",
+    "teacher_email"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.teacher_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "user_condition": {
+        "role": "nobody"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "nobody"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "nobody"
+      }
+    }
+  }
+}

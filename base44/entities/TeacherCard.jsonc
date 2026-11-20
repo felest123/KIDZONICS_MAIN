@@ -1,0 +1,69 @@
+{
+  "name": "TeacherCard",
+  "type": "object",
+  "properties": {
+    "teacher_email": {
+      "type": "string"
+    },
+    "teacher_name": {
+      "type": "string"
+    },
+    "card_hash": {
+      "type": "string",
+      "description": "SHA-256 hash of the card UID. The raw card number is never stored or shown."
+    },
+    "label": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "registered_by": {
+      "type": "string",
+      "description": "Who linked the card: the teacher or an administrator's email"
+    },
+    "deactivated_at": {
+      "type": "string"
+    },
+    "deactivated_by": {
+      "type": "string"
+    },
+    "deactivated_reason": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "teacher_email",
+    "card_hash"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.teacher_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

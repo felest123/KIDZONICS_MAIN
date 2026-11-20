@@ -1,0 +1,57 @@
+{
+  "name": "RfidTap",
+  "type": "object",
+  "properties": {
+    "card_hash": {
+      "type": "string"
+    },
+    "teacher_email": {
+      "type": "string"
+    },
+    "teacher_name": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "authorized",
+        "unknown",
+        "heartbeat"
+      ],
+      "enumColors": [
+        "green",
+        "red",
+        "gray"
+      ]
+    },
+    "device": {
+      "type": "string"
+    },
+    "consumed": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

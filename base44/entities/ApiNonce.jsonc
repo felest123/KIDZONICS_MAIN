@@ -1,0 +1,38 @@
+{
+  "name": "ApiNonce",
+  "type": "object",
+  "description": "One-time request ids for the Admin API, to block replayed requests.",
+  "properties": {
+    "nonce": {
+      "type": "string"
+    },
+    "used_at": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "nonce"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "nobody"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "nobody"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "nobody"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "nobody"
+      }
+    }
+  }
+}

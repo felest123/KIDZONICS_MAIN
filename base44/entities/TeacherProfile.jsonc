@@ -1,0 +1,78 @@
+{
+  "name": "TeacherProfile",
+  "type": "object",
+  "description": "School details for a teacher account, managed from the Admin application. One per teacher email.",
+  "properties": {
+    "email": {
+      "type": "string",
+      "description": "Teacher's sign-in email (links to the User account)"
+    },
+    "full_name": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "employee_id": {
+      "type": "string"
+    },
+    "advisory_sections": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "invited",
+        "active",
+        "deactivated"
+      ],
+      "enumColors": [
+        "yellow",
+        "green",
+        "gray"
+      ],
+      "default": "active"
+    },
+    "deactivated_at": {
+      "type": "string"
+    },
+    "deactivated_reason": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "email"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "user_condition": {
+        "role": "nobody"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "nobody"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "nobody"
+      }
+    }
+  }
+}

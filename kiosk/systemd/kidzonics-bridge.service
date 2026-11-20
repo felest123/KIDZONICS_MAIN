@@ -1,0 +1,29 @@
+[Unit]
+Description=KidZonics RFID bridge (USB reader -> Base44)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=kzbridge
+Group=kzbridge
+SupplementaryGroups=input
+EnvironmentFile=/etc/kidzonics/bridge.env
+ExecStart=/usr/bin/python3 -u /opt/kidzonics/bridge/kidzonics_bridge.py
+Restart=always
+RestartSec=5
+
+# Hardening: the bridge only needs input devices and the network.
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+
+[Install]
+WantedBy=multi-user.target

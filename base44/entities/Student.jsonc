@@ -1,0 +1,106 @@
+{
+  "name": "Student",
+  "type": "object",
+  "properties": {
+    "student_id": {
+      "type": "string",
+      "description": "School-issued student ID"
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "middle_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string",
+      "description": "Complete student name shown on the kiosk"
+    },
+    "section": {
+      "type": "string",
+      "description": "Class section, e.g. Sampaguita"
+    },
+    "photo_uri": {
+      "type": "string",
+      "description": "Private file URI of the student profile picture"
+    },
+    "advisory_teacher_email": {
+      "type": "string",
+      "description": "Email of the advisory teacher who owns this student"
+    },
+    "advisory_teacher_name": {
+      "type": "string"
+    },
+    "special_needs": {
+      "type": "boolean",
+      "default": false,
+      "description": "SNED flag - enables the adapted learning interface"
+    },
+    "enrollment_status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive",
+        "transferred"
+      ],
+      "enumColors": [
+        "green",
+        "gray",
+        "yellow"
+      ],
+      "default": "active"
+    },
+    "guardian_name": {
+      "type": "string"
+    },
+    "guardian_phone": {
+      "type": "string"
+    },
+    "guardian_email": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "avatar": {
+      "type": "string",
+      "description": "Legacy field, no longer used for new students"
+    }
+  },
+  "required": [
+    "name",
+    "section"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.advisory_teacher_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

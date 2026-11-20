@@ -1,0 +1,255 @@
+@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 45 55% 97%;
+    --foreground: 193 33% 24%;
+    --card: 0 0% 100%;
+    --card-foreground: 193 33% 24%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 193 33% 24%;
+    --primary: 182 100% 27%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 45 96% 64%;
+    --secondary-foreground: 193 40% 20%;
+    --muted: 187 45% 94%;
+    --muted-foreground: 193 18% 42%;
+    --accent: 25 95% 53%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 52%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 190 28% 87%;
+    --input: 190 28% 87%;
+    --ring: 182 100% 27%;
+    --chart-1: 182 100% 27%;
+    --chart-2: 45 96% 64%;
+    --chart-3: 25 95% 53%;
+    --chart-4: 145 50% 55%;
+    --chart-5: 320 80% 78%;
+    --radius: 1.4rem;
+
+    --font-heading: "Baloo 2", ui-rounded, "Segoe UI", system-ui, sans-serif;
+    --font-display: "Baloo 2", ui-rounded, "Segoe UI", system-ui, sans-serif;
+    --font-body: "Nunito", ui-rounded, "Segoe UI", system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --kz-ink: #2c4a52;
+    --kz-teal: #00868b;
+    --kz-teal-deep: #0d6f74;
+    --kz-sky: #a9e0f5;
+    --kz-yellow: #fcd34d;
+    --kz-orange: #f97316;
+    --kz-grass: #7cc94b;
+    --kz-cream: #fdf8ec;
+    --kz-pink: #f896d8;
+  }
+
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer components {
+  .kz-card-shadow {
+    box-shadow: 0 10px 0 -4px rgba(44, 74, 82, 0.12), 0 18px 34px -18px rgba(44, 74, 82, 0.5);
+  }
+
+  .kz-soft-shadow {
+    box-shadow: 0 18px 40px -22px rgba(44, 74, 82, 0.55);
+  }
+
+  .kz-paper {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.55) 1px, transparent 1px),
+      radial-gradient(rgba(44, 74, 82, 0.05) 1px, transparent 1px);
+    background-size: 14px 14px, 22px 22px;
+    background-position: 0 0, 6px 9px;
+  }
+
+  .kz-btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-extrabold transition-all duration-200 active:translate-y-[2px] disabled:cursor-not-allowed disabled:opacity-50;
+    font-family: var(--font-display);
+  }
+
+  .kz-tap {
+    @apply min-h-[56px] min-w-[56px];
+  }
+}
+
+@layer utilities {
+  @keyframes kz-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+
+  @keyframes kz-drift {
+    0% {
+      transform: translateX(-6%);
+    }
+    100% {
+      transform: translateX(6%);
+    }
+  }
+
+  @keyframes kz-bob {
+    0%,
+    100% {
+      transform: translateY(0) rotate(-1deg);
+    }
+    50% {
+      transform: translateY(-7px) rotate(1deg);
+    }
+  }
+
+  @keyframes kz-glow {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgba(252, 211, 77, 0.85);
+    }
+    50% {
+      box-shadow: 0 0 0 16px rgba(252, 211, 77, 0);
+    }
+  }
+
+  @keyframes kz-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-kz-float {
+    animation: kz-float 7s ease-in-out infinite;
+  }
+  .animate-kz-bob {
+    animation: kz-bob 3.4s ease-in-out infinite;
+  }
+  .animate-kz-glow {
+    animation: kz-glow 1.9s ease-out infinite;
+  }
+  .animate-kz-fade-up {
+    animation: kz-fade-up 0.5s ease-out both;
+  }
+  .animate-kz-fade {
+    animation: kz-fade-up 0.6s ease-out both;
+  }
+
+  .kz-scroll-x {
+    scrollbar-width: thin;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-kz-float,
+  .animate-kz-bob,
+  .animate-kz-glow {
+    animation: none !important;
+  }
+}
+
+/* ---------- Teacher dashboard theme preferences ---------- */
+
+.teacher-dyslexic,
+.teacher-dyslexic * {
+  font-family: "Atkinson Hyperlegible", "Nunito", ui-rounded, system-ui, sans-serif !important;
+  letter-spacing: 0.01em;
+}
+
+.teacher-shell.teacher-dark {
+  background-color: #0f2429 !important;
+}
+
+.teacher-shell.teacher-dark [class*="border-[#a7c9bc]"] {
+  border-color: #2c5c56 !important;
+}
+
+.teacher-shell.teacher-dark [class*="bg-white"] {
+  background-color: #17343a !important;
+}
+
+.teacher-shell.teacher-dark [class*="bg-[#f8fbfb]"],
+.teacher-shell.teacher-dark [class*="bg-[#f6faf9]"],
+.teacher-shell.teacher-dark [class*="bg-[#f1f7f6]"],
+.teacher-shell.teacher-dark [class*="bg-[#f1f5f5]"],
+.teacher-shell.teacher-dark [class*="bg-[#eef7f4]"] {
+  background-color: #1b3b40 !important;
+}
+
+.teacher-shell.teacher-dark [class*="text-[#2c4a52]"],
+.teacher-shell.teacher-dark [class*="text-[#4b6a72]"],
+.teacher-shell.teacher-dark [class*="text-[#173a63]"],
+.teacher-shell.teacher-dark [class*="text-[#0d6f74]"] {
+  color: #e9f4f3 !important;
+}
+
+.teacher-shell.teacher-dark [class*="text-[#8aa8ac]"],
+.teacher-shell.teacher-dark [class*="text-[#7d9ba0]"],
+.teacher-shell.teacher-dark [class*="text-[#9db6ba]"],
+.teacher-shell.teacher-dark [class*="text-[#5b7f86]"] {
+  color: #a9c7c8 !important;
+}
+
+.teacher-shell.teacher-dark [class*="ring-[#e2eef0]"],
+.teacher-shell.teacher-dark [class*="ring-[#dceceb]"] {
+  --tw-ring-color: #2b5055;
+}
+
+.teacher-shell.teacher-dark input,
+.teacher-shell.teacher-dark select,
+.teacher-shell.teacher-dark textarea {
+  background-color: #123036 !important;
+  border-color: #2b5055 !important;
+  color: #e9f4f3 !important;
+}
+
+.teacher-shell.teacher-contrast:not(.teacher-dark) [class*="text-[#8aa8ac]"],
+.teacher-shell.teacher-contrast:not(.teacher-dark) [class*="text-[#7d9ba0]"],
+.teacher-shell.teacher-contrast:not(.teacher-dark) [class*="text-[#9db6ba]"],
+.teacher-shell.teacher-contrast:not(.teacher-dark) [class*="text-[#5b7f86]"] {
+  color: #375a61 !important;
+}
+
+.teacher-shell.teacher-contrast:not(.teacher-dark) [class*="ring-[#e2eef0]"] {
+  --tw-ring-color: #7b9ea3;
+}
+
+.teacher-shell.teacher-contrast:not(.teacher-dark) input,
+.teacher-shell.teacher-contrast:not(.teacher-dark) select {
+  border-color: #7b9ea3 !important;
+}

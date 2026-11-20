@@ -1,0 +1,78 @@
+{
+  "name": "SystemConfig",
+  "type": "object",
+  "description": "Settings managed by administrators. Readable by the kiosk; written only by backend functions.",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "'ai_agent' or 'school'"
+    },
+    "assessment_enabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "agent_name": {
+      "type": "string"
+    },
+    "agent_avatar": {
+      "type": "string"
+    },
+    "voice_name": {
+      "type": "string"
+    },
+    "speaking_rate": {
+      "type": "number"
+    },
+    "language": {
+      "type": "string"
+    },
+    "pass_threshold": {
+      "type": "number",
+      "description": "Accuracy (0-100) needed to pass a speaking trial"
+    },
+    "audio_instructions": {
+      "type": "string",
+      "description": "Spoken intro the agent gives before a lesson"
+    },
+    "last_ok_at": {
+      "type": "string",
+      "description": "Last time a real pronunciation assessment succeeded"
+    },
+    "last_error_at": {
+      "type": "string"
+    },
+    "last_error": {
+      "type": "string"
+    },
+    "school_name": {
+      "type": "string"
+    },
+    "support_contact": {
+      "type": "string"
+    },
+    "updated_by": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "key"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "nobody"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "nobody"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "nobody"
+      }
+    }
+  }
+}

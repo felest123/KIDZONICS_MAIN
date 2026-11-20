@@ -1,0 +1,127 @@
+{
+  "name": "SupportRequest",
+  "type": "object",
+  "description": "Teacher-to-administrator support request. Written only by backend functions.",
+  "properties": {
+    "teacher_email": {
+      "type": "string"
+    },
+    "teacher_name": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "rfid_card",
+        "account",
+        "student_record",
+        "ai_agent",
+        "lesson_request",
+        "technical",
+        "other"
+      ],
+      "enumColors": [
+        "blue",
+        "purple",
+        "yellow",
+        "green",
+        "orange",
+        "gray",
+        "gray"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "in_progress",
+        "resolved"
+      ],
+      "enumColors": [
+        "yellow",
+        "blue",
+        "green"
+      ],
+      "default": "pending"
+    },
+    "messages": {
+      "type": "array",
+      "description": "Conversation: teacher follow-ups and administrator replies",
+      "items": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "type": "string",
+            "enum": [
+              "teacher",
+              "admin"
+            ]
+          },
+          "author_name": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "sent_at": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "last_message_at": {
+      "type": "string"
+    },
+    "last_message_from": {
+      "type": "string",
+      "enum": [
+        "teacher",
+        "admin"
+      ]
+    },
+    "resolved_at": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "teacher_email",
+    "subject",
+    "category",
+    "description"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.teacher_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "user_condition": {
+        "role": "nobody"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "nobody"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "nobody"
+      }
+    }
+  }
+}
